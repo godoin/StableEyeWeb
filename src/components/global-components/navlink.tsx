@@ -16,7 +16,7 @@ export default function NavLink(props: NavLinkProps) {
   return (
     <a
       href={props.href}
-      className={`font-bold tracking-wider hover:text-violet-700 ${
+      className={`font-semibold tracking-wider hover:text-violet-700 ${
         clicked ? "focus:border-1 focus:border-purple-500" : ""
       } ${props.className || ""}`}
       onClick={handleClick}

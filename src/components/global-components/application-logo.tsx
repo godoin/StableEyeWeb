@@ -7,7 +7,7 @@ export default function ApplicationLogo() {
       <Image
         src="assets/images/logo.png"
         alt="StableEye Logo"
-        className="h-16"
+        className="h-14"
       />
     </a>
   );

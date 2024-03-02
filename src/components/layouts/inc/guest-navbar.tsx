@@ -1,11 +1,11 @@
-import ApplicationLogo from "../global-components/application-logo";
-import Image from "../global-components/image";
-import NavLink from "../global-components/navlink";
-import { Button } from "../ui/button";
+import ApplicationLogo from "../../global-components/application-logo";
+import Image from "../../global-components/image";
+import NavLink from "../../global-components/navlink";
+import { Button } from "../../ui/button";
 
 export default function GuestNavBar() {
   return (
-    <div className="flex justify-between items-center h-16 border-b border-zinc-500 px-2">
+    <div className="flex justify-between items-center h-14 border-b border-zinc-500 px-2">
       <div className="flex gap-8 items-center">
         <ApplicationLogo />
         <div className="flex gap-8 text-sm">
@@ -41,7 +41,7 @@ export default function GuestNavBar() {
           </Button>
         </div>
         <a href="/login">
-          <Button variant="default" className="h-16 w-20 text-lg rounded-none">
+          <Button variant="default" className="h-14 w-20 text-lg rounded-none">
             LOGIN
           </Button>
         </a>
