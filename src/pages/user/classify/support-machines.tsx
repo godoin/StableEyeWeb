@@ -6,6 +6,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import SVMDetails from "./svm-details";
 
 export default function SupportVectorMachines() {
   return (
@@ -26,7 +28,16 @@ export default function SupportVectorMachines() {
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem>Rerun</DropdownMenuItem>
-            <DropdownMenuItem>View Details</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Sheet>
+                <SheetTrigger onClick={(e) => e.stopPropagation()}>
+                  View Details
+                </SheetTrigger>
+                <SheetContent className="w-108">
+                  <SVMDetails />
+                </SheetContent>
+              </Sheet>
+            </DropdownMenuItem>
             <DropdownMenuItem>Help</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
