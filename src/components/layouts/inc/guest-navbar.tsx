@@ -18,25 +18,37 @@ export default function GuestNavBar() {
       </div>
       <div className="flex gap-4">
         <div className="flex gap-4 items-center">
-          <Button variant="outline" size="icon">
+          <Button
+            variant="outline"
+            size="icon"
+            className="border-zinc-500 h-8 w-8"
+          >
             <Image
               src="assets/images/icons/chart-pie-solid.svg"
               alt="Results"
-              className="object-fit h-5 w-5"
+              className="object-fit h-4 w-4"
             />
           </Button>
-          <Button variant="outline" size="icon">
+          <Button
+            variant="outline"
+            size="icon"
+            className="border-zinc-500 h-8 w-8"
+          >
             <Image
               src="assets/images/icons/question-solid.svg"
               alt="Help"
-              className="object-fit h-5 w-5"
+              className="object-fit h-4 w-4"
             />
           </Button>
-          <Button variant="outline" size="icon">
+          <Button
+            variant="outline"
+            size="icon"
+            className="border-zinc-500 h-8 w-8"
+          >
             <Image
               src="assets/images/icons/moon-solid.svg"
               alt="Dark Mode"
-              className="object-fit h-5 w-5"
+              className="object-fit h-4 w-4"
             />
           </Button>
         </div>

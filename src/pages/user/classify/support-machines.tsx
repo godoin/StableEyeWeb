@@ -9,7 +9,7 @@ import {
 
 export default function SupportVectorMachines() {
   return (
-    <div className="bg-white rounded-lg border-zinc-300">
+    <div className="bg-white rounded-lg border border-zinc-300">
       <section className="h-8 px-5 py-6 flex border-b border-zinc-300 items-center justify-between">
         <span className="text-regular font-medium">
           Support Vector Machines
@@ -39,7 +39,7 @@ export default function SupportVectorMachines() {
             accuracy of 98% on the training set and 95% on the test set.
           </p>
         </article>
-        <form action="" className="flex gap-4 min-w-full">
+        <form action="" className="flex flex-col lg:flex-row gap-4">
           <section className="flex-1 border border-zinc-300 rounded-lg p-4 space-y-4">
             <hgroup className="space-y-0">
               <span className="semibold">Classification Confidence</span>
@@ -58,9 +58,9 @@ export default function SupportVectorMachines() {
               </output>
             </div>
           </section>
-          <section className="flex-none grid grid-cols-1 justify-between space-y-4 w-64 p-4 border border-zinc-300 rounded-lg">
+          <section className="flex w-full lg:flex-none lg:w-56 grid grid-cols-1 justify-between lg:space-y-4 p-4 gap-2 border border-zinc-300 rounded-lg">
             <span>Is the model correct?</span>
-            <div className="grid grid-cols-1 justify-center items-center">
+            <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-0 justify-center items-center">
               <Button
                 variant="secondary"
                 className="cursor-not-allowed bg-zinc-300 hover:bg-zinc-300"
