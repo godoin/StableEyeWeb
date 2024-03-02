@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 
 export default function GuestNavBar() {
   return (
-    <div className="flex justify-between items-center h-16 border-b border-zinc-500">
+    <div className="flex justify-between items-center h-16 border-b border-zinc-500 px-2">
       <div className="flex gap-8 items-center">
         <ApplicationLogo />
         <div className="flex gap-8 text-sm">
@@ -40,8 +40,8 @@ export default function GuestNavBar() {
             />
           </Button>
         </div>
-        <a href="">
-          <Button variant="default" className="h-16 w-20 rounded-none">
+        <a href="/login">
+          <Button variant="default" className="h-16 w-20 text-lg rounded-none">
             LOGIN
           </Button>
         </a>
