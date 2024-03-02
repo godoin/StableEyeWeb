@@ -1,21 +1,15 @@
-import React from "react";
-
 interface ImageProps {
   src: string;
   alt: string;
   height?: number;
   width?: number;
   className?: string;
+  [key: string]: any;
 }
 
-const Image: React.FC<ImageProps> = ({
-  src,
-  alt,
-  height,
-  width,
-  className,
-  ...otherProps
-}) => {
+export default function Image(props: ImageProps) {
+  const { src, alt, height, width, className, ...otherProps } = props;
+
   return (
     <img
       src={src}
@@ -26,6 +20,4 @@ const Image: React.FC<ImageProps> = ({
       className={className}
     />
   );
-};
-
-export default Image;
+}

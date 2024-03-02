@@ -1,33 +1,50 @@
 import ApplicationLogo from "../global-components/application-logo";
+import Image from "../global-components/image";
+import NavLink from "../global-components/navlink";
 import { Button } from "../ui/button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function GuestNavBar() {
   return (
     <div className="flex justify-between items-center h-16 border-b border-zinc-500">
-      <div className="flex gap-6 items-center">
+      <div className="flex gap-8 items-center">
         <ApplicationLogo />
-        <div className="flex gap-6 text-sm">
-          <a href="" className="font-bold tracking-wider hover:text-violet-700">
-            HOME
-          </a>
-          <a href="" className="font-bold tracking-wider hover:text-violet-700">
-            ALGORITHMS
-          </a>
-          <a href="" className="font-bold tracking-wider hover:text-violet-700">
-            CLASSIFY
-          </a>
-          <a href="" className="font-bold tracking-wider hover:text-violet-700">
-            DATASETS
-          </a>
-          <a href="" className="font-bold tracking-wider hover:text-violet-700">
-            HELP
-          </a>
+        <div className="flex gap-8 text-sm">
+          <NavLink href="" title="HOME" />
+          <NavLink href="" title="ALGORITHMS" />
+          <NavLink href="" title="CLASSIFY" />
+          <NavLink href="" title="DATASETS" />
+          <NavLink href="" title="HELP" />
         </div>
       </div>
-      <div className="">
-        <Button variant="outline" size="icon">
-        </Button>
+      <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
+          <Button variant="outline" size="icon">
+            <Image
+              src="assets/images/icons/chart-pie-solid.svg"
+              alt="Results"
+              className="object-fit h-5 w-5"
+            />
+          </Button>
+          <Button variant="outline" size="icon">
+            <Image
+              src="assets/images/icons/question-solid.svg"
+              alt="Help"
+              className="object-fit h-5 w-5"
+            />
+          </Button>
+          <Button variant="outline" size="icon">
+            <Image
+              src="assets/images/icons/moon-solid.svg"
+              alt="Dark Mode"
+              className="object-fit h-5 w-5"
+            />
+          </Button>
+        </div>
+        <a href="">
+          <Button variant="default" className="h-16 w-20 rounded-none">
+            LOGIN
+          </Button>
+        </a>
       </div>
     </div>
   );
