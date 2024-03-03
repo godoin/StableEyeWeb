@@ -1,5 +1,5 @@
 import AuthLayout from "@/Components/Layouts/AuthLayout";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/Components/ui/input";
 import { Label } from "@/Components/ui/label";
@@ -10,23 +10,25 @@ import Axios from "axios";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [loginStatus, setLoginStatus] = useState("");
+
   const navigateTo = useNavigate();
 
-  const loginUser = (e) => {
+  const loginUser = (e: any) => {
     e.preventDefault();
     Axios.post("http://localhost:3002/login", {
       Email: email,
       Password: password,
     })
-      .then((response) => {
+      .then((response: any) => {
         if (response.data.error_message) {
-          setLoginStatus("Error: Credentials do not match. Please try again.");
+          console.log(response.data.error_message);
+          setLoginStatus(response.data.error_message);
           setTimeout(() => {
             setLoginStatus("");
           }, 4000);
         } else {
-          console.log("Login successful");
           navigateTo("/classify");
         }
       })
@@ -35,12 +37,17 @@ export default function LoginPage() {
       });
   };
 
+  const onSubmit = () => {
+    setEmail("");
+    setPassword("");
+  };
   return (
     <AuthLayout>
       <form
         action=""
         className="bg-white w-[22em] rounded-lg grid grid-cols-1 justify-between items-center px-6 py-6"
         style={{ minHeight: `calc(100vh - 8em)` }}
+        onSubmit={onSubmit}
       >
         <div className="space-y-12">
           <div className="flex flex-col gap-8 justify-start items-start">
