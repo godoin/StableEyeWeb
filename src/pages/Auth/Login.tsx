@@ -8,17 +8,21 @@ import ApplicationLogo from "@/Components/Global/ApplicationLogo";
 export default function LoginPage() {
   return (
     <AuthLayout>
-      <div className="flex flex-col gap-2">
-        <ApplicationLogo />
-        <span className="text-violet-700 text-xl tracking-wide font-medium">
-          Sign in to StableEye
-        </span>
-      </div>
       <form
         action=""
-        className="bg-white w-[22em] rounded-lg grid grid-cols-1 justify-center items-center p-6"
+        className="bg-white w-[22em] rounded-lg grid grid-cols-1 justify-between items-center px-6"
+        style={{ minHeight: `calc(100vh - 8em)` }}
       >
-        <div className="space-y-4">
+        <div className="space-y-12">
+          <div className="flex flex-col gap-8 justify-start items-start">
+            <ApplicationLogo />
+            <div className="grid gap-2">
+              <span className="text-5xl font-bold text-violet-700">Login</span>
+              <p className="text-zinc-500 text-lg font-medium">
+                Please fill the form in order to continue.
+              </p>
+            </div>
+          </div>
           <div className="space-y-2">
             <div className="space-y-1">
               <Label htmlFor="email" className="text-zinc-700">
@@ -54,17 +58,15 @@ export default function LoginPage() {
             >
               Login
             </Button>
+            <div className="text-zinc-500 w-full text-center w-4/5 flex gap-2 items-center justify-center">
+              <p className="text-sm">Don't have an account?</p>
+              <a href="" className=" text-violet-500 text-sm hover:underline">
+                Register
+              </a>
+            </div>
           </div>
         </div>
       </form>
-      <div className="rounded-lg bg-zinc-100 w-[22em] text-center p-6 border border-zinc-300">
-        <div className="text-zinc-500 w-full text-center w-4/5 flex gap-2 items-center justify-center">
-          <p className="text-sm">Don't have an account?</p>
-          <a href="" className=" text-violet-500 text-sm hover:underline">
-            Register
-          </a>
-        </div>
-      </div>
     </AuthLayout>
   );
 }
