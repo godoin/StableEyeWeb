@@ -1,9 +1,16 @@
 import React from "react";
 import Image from "./Image";
 
-export default function ApplicationLogo() {
+interface ApplicationLogoProps {
+  className?: string;
+}
+
+export default function ApplicationLogo(props: ApplicationLogoProps) {
   return (
-    <a href="/" className="flex items-center text-center justify-center gap-4">
+    <a
+      href="/"
+      className={`flex items-center text-center justify-center gap-4 + ${props.className}`}
+    >
       <Image
         src="assets/images/logo.png"
         alt="StableEye Logo"

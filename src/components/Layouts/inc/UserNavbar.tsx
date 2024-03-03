@@ -12,7 +12,7 @@ export default function UserNavBar() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -24,9 +24,9 @@ export default function UserNavBar() {
       <div className="flex gap-8 items-center">
         <ApplicationLogo />
         <div className="hidden md:flex gap-8 text-sm">
-          <NavLink href="" title="HOME" />
+          <NavLink href="/" title="HOME" />
           <NavLink href="" title="ALGORITHMS" />
-          <NavLink href="" title="CLASSIFY" />
+          <NavLink href="/classify" title="CLASSIFY" />
           <NavLink href="" title="DATASETS" />
           <NavLink href="" title="HELP" />
         </div>
