@@ -7,10 +7,24 @@ import {
   DropdownMenuTrigger,
 } from "@/Components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/Components/ui/sheet";
-import ConvDetails from "./ConvDetails";
+import ConvDetails from "./Sheets/ConvDetails";
+import { useEffect, useState } from "react";
+import ModelLoading from "./Loading/ModelLoading";
 
 export default function ConvolutionalNetworks() {
-  return (
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return isLoading ? (
+    <ModelLoading />
+  ) : (
     <div className="bg-white rounded-lg border border-zinc-300">
       <section className="h-8 px-5 py-6 flex border-b border-zinc-300 items-center justify-between">
         <span className="text-regular font-medium">

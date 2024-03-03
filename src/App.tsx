@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/Home";
-import ClassifyPage from "./pages/User/Classify";
+import HomePage from "./Pages/Home";
+import ClassifyPage from "./Pages/User/Classify";
 
 function App() {
   return (

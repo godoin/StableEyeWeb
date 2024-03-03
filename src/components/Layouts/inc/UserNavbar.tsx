@@ -1,12 +1,25 @@
-import React from "react";
-import ApplicationLogo from "../../Global/ApplicationLogo";
+import React, { useEffect, useState } from "react";
 import Image from "../../Global/Image";
 import NavLink from "../../Global/NavLink";
 import { Button } from "../../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar";
+import ApplicationLogo from "../../Global/ApplicationLogo";
+import UserNavbarLoading from "../Loading/UserNavbarLoading";
 
 export default function UserNavBar() {
-  return (
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return isLoading ? (
+    <UserNavbarLoading />
+  ) : (
     <div className="fixed top-0 left-0 flex justify-between items-center h-14 border-b border-zinc-500 bg-white px-2 min-w-full">
       <div className="flex gap-8 items-center">
         <ApplicationLogo />

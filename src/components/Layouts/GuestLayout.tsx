@@ -1,4 +1,4 @@
-import GuestNavbar from "./inc/GuestNavbar";
+import GuestNavbar from "./Inc/GuestNavbar";
 import { PropsWithChildren } from "react";
 
 export default function GuestLayout({ children }: PropsWithChildren) {

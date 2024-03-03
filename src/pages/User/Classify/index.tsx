@@ -1,7 +1,7 @@
 import UserLayout from "@/Components/Layouts/UserLayout";
 import InputImage from "./InputImage";
 import ConvolutionalNetworks from "./ConvNetworks";
-import SupportVectorMachines from "./SupportVecMachines";
+import SupportVectorMachines from "./SuppVecMachines";
 
 export default function Classify() {
   return (
