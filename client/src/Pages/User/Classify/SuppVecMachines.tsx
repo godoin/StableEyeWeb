@@ -26,7 +26,7 @@ export default function SupportVectorMachines() {
     <ModelLoading />
   ) : (
     <div className="bg-white rounded-lg border border-zinc-300">
-      <section className="h-8 px-5 py-6 flex border-b border-zinc-300 items-center justify-between">
+      <section className="h-8 px-4 py-6 flex border-b border-zinc-300 items-center justify-between">
         <span className="text-regular font-medium">
           Support Vector Machines
         </span>

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import InputImageLoading from "./Loading/InputImageLoading";
 import FileDropZone from "@/Components/User/Classify/FileDropZone";
 import RecordZone from "@/Components/User/Classify/RecordZone";
+import { Button } from "@/Components/ui/button";
 
 export default function InputImage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,15 +28,17 @@ export default function InputImage() {
         <InputImageLoading />
       ) : (
         <>
-          <section className="h-8 px-5 py-6 flex border-b border-zinc-300 items-center justify-between">
+          <section className="h-8 px-4 py-6 flex border-b border-zinc-300 items-center justify-between">
             <span className="text-regular font-medium">Input Image*</span>
             <DropdownMenu>
               <DropdownMenuTrigger>
-                <Image
-                  src="assets/images/icons/ellipsis-vertical-solid.svg"
-                  alt="Dropdown"
-                  className="h-4"
-                />
+                <Button variant="ghost" size="icon">
+                  <Image
+                    src="assets/images/icons/ellipsis-vertical-solid.svg"
+                    alt="Dropdown"
+                    className="h-4"
+                  />
+                </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>Refresh</DropdownMenuItem>

@@ -5,7 +5,7 @@ import { Input } from "@/Components/ui/input";
 import { Label } from "@/Components/ui/label";
 import { Button } from "@/Components/ui/button";
 import ApplicationLogo from "@/Components/Global/ApplicationLogo";
-import Axios from "axios";
+import axios from "axios";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -15,12 +15,14 @@ export default function LoginPage() {
 
   const navigateTo = useNavigate();
 
-  const loginUser = (e: any) => {
+  axios.defaults.withCredentials = true;
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    Axios.post("http://localhost:3002/login", {
-      Email: email,
-      Password: password,
-    })
+    axios
+      .post("http://localhost:3002/login", {
+        Email: email,
+        Password: password,
+      })
       .then((response: any) => {
         if (response.data.error_message) {
           console.log(response.data.error_message);
@@ -29,7 +31,7 @@ export default function LoginPage() {
             setLoginStatus("");
           }, 4000);
         } else {
-          navigateTo("/classify");
+          navigateTo("/");
         }
       })
       .catch((error) => {
@@ -102,7 +104,7 @@ export default function LoginPage() {
               variant="default"
               type="submit"
               className="bg-violet-700 hover:bg-violet-500 w-full"
-              onClick={loginUser}
+              onClick={handleSubmit}
             >
               Login
             </Button>

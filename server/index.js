@@ -3,10 +3,19 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST"],
+  })
+);
+app.use(cookieParser());
 
 // Environment Variables
 const { DB_USER, DB_HOST, DB_PASSWORD, DB_NAME, PORT } = process.env;
@@ -33,7 +42,33 @@ db.connect((err) => {
   console.log("Connected to the database");
 });
 
+// Verify User
+const verifyUser = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.json({ Error: "You are not authenticated" });
+  } else {
+    jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+      if (err) {
+        return res.json({ Error: "Something went wrong with the token." });
+      } else {
+        req.username = decoded.username;
+        next();
+      }
+    });
+  }
+};
+
+app.get("/", verifyUser, (req, res) => {
+  return res.json({ Status: "Success", username: req.username });
+});
+
 // Authentication
+app.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  return res.json({ Status: "Success" });
+});
+
 app.post("/login", (req, res) => {
   const email = req.body.Email;
   const password = req.body.Password;
@@ -49,8 +84,14 @@ app.post("/login", (req, res) => {
 
     db.query(SQL, values, (err, results) => {
       if (err) {
-        res.send({ error: "Error: Internal Server Error" });
+        res.send({ error_message: "Error: Internal Server Error" });
       } else if (results.length > 0) {
+        const username = results[0].username;
+        console.log(username);
+        const token = jwt.sign({ username }, "jwt-secret-key", {
+          expiresIn: "1d",
+        });
+        res.cookie("token", token);
         res.send(results);
       } else {
         res.send({

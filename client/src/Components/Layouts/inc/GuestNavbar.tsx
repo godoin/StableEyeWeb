@@ -1,17 +1,29 @@
+import { useEffect, useState } from "react";
 import ApplicationLogo from "../../Global/ApplicationLogo";
 import Image from "../../Global/Image";
 import NavLink from "../../Global/NavLink";
 import { Button } from "../../ui/button";
+import GuestNavbarLoading from "../Loading/GuestNavbarLoading";
 
 export default function GuestNavBar() {
-  return (
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+  return isLoading ? (
+    <GuestNavbarLoading />
+  ) : (
     <div className="flex justify-between items-center h-14 border-b border-zinc-500 px-2">
       <div className="flex gap-8 items-center">
         <ApplicationLogo />
         <div className="flex gap-8 text-sm">
           <NavLink href="" title="HOME" />
           <NavLink href="" title="ALGORITHMS" />
-          <NavLink href="" title="CLASSIFY" />
           <NavLink href="" title="DATASETS" />
           <NavLink href="" title="HELP" />
         </div>
