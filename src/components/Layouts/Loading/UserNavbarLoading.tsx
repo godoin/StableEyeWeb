@@ -8,7 +8,7 @@ export default function UserNavbarLoading() {
       <div className="w-full flex gap-8 items-center">
         <ApplicationLogo />
         <div className="hidden md:flex gap-8 text-sm">
-          <Skeleton className="h-8 w-96" />
+          {/* <Skeleton className="h-8 w-96" /> */}
         </div>
       </div>
       <div className="flex gap-3">

@@ -7,6 +7,8 @@ import {
 } from "@/Components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
 import InputImageLoading from "./Loading/InputImageLoading";
+import FileDropZone from "@/Components/User/Classify/FileDropZone";
+import RecordZone from "@/Components/User/Classify/RecordZone";
 
 export default function InputImage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,26 +44,8 @@ export default function InputImage() {
             </DropdownMenu>
           </section>
           <div className="bg-violet-100 pt-6 pb-8 px-4 space-y-4">
-            <section className="py-8 px-6 bg-violet-200 hover:bg-violet-300 cursor-pointer rounded-lg flex flex-col items-center justify-center text-center gap-3">
-              <Image
-                src="assets/images/icons/upload_image.png"
-                alt="Upload Image"
-                className="h-5.5 w-4"
-              />
-              <p className="text-violet-700 font-semibold">
-                Choose images from your files or <br /> drag and drop here.
-              </p>
-            </section>
-            <section className="py-8 px-6 bg-violet-200 hover:bg-violet-300 cursor-pointer rounded-lg flex flex-col items-center justify-center text-center gap-3">
-              <Image
-                src="assets/images/icons/upload_image.png"
-                alt="Upload Image"
-                className="h-5.5 w-4"
-              />
-              <p className="text-violet-700 font-semibold">
-                Open your webcam and record a <br /> picture here.
-              </p>
-            </section>
+            <FileDropZone />
+            <RecordZone />
             <section className="grid text-center items-center justify-center">
               <Image
                 src="assets/images/resize_image.png"
