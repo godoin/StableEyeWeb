@@ -1,11 +1,11 @@
-import Image from "@/components/global-components/image";
+import Image from "@/Components/Global/Image";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@/Components/ui/dropdown-menu";
+import { Skeleton } from "@/Components/ui/skeleton";
 import { useEffect, useState } from "react";
 
 export default function InputImage() {

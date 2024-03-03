@@ -1,5 +1,5 @@
 import React, { Children } from "react";
-import UserNavBar from "./inc/user-navbar";
+import UserNavBar from "./inc/UserNavbar";
 import { PropsWithChildren } from "react";
 
 export default function UserLayout({ children }: PropsWithChildren) {

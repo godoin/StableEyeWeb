@@ -1,4 +1,4 @@
-import Item from "@/components/user-components/classify-components/item";
+import Item from "@/Components/User/classify-components/item";
 
 export default function ConvDetails() {
   return (

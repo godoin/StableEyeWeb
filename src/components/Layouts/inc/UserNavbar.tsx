@@ -1,9 +1,9 @@
 import React from "react";
-import ApplicationLogo from "../../global-components/application-logo";
-import Image from "../../global-components/image";
-import NavLink from "../../global-components/navlink";
+import ApplicationLogo from "../../Global/ApplicationLogo";
+import Image from "../../Global/Image";
+import NavLink from "../../Global/NavLink";
 import { Button } from "../../ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar";
 
 export default function UserNavBar() {
   return (

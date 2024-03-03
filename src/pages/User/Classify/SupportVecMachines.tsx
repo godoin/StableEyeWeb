@@ -1,20 +1,20 @@
-import Image from "@/components/global-components/image";
-import { Button } from "@/components/ui/button";
+import Image from "@/Components/Global/Image";
+import { Button } from "@/Components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import ConvDetails from "./conv-details";
+} from "@/Components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/Components/ui/sheet";
+import SVMDetails from "./SVMDetails";
 
-export default function ConvolutionalNetworks() {
+export default function SupportVectorMachines() {
   return (
     <div className="bg-white rounded-lg border border-zinc-300">
       <section className="h-8 px-5 py-6 flex border-b border-zinc-300 items-center justify-between">
         <span className="text-regular font-medium">
-          Convolutional Neural Networks
+          Support Vector Machines
         </span>
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -33,8 +33,8 @@ export default function ConvolutionalNetworks() {
                 <SheetTrigger onClick={(e) => e.stopPropagation()}>
                   View Details
                 </SheetTrigger>
-                <SheetContent className="w-3/5">
-                  <ConvDetails />
+                <SheetContent className="w-108">
+                  <SVMDetails />
                 </SheetContent>
               </Sheet>
             </DropdownMenuItem>
@@ -46,10 +46,8 @@ export default function ConvolutionalNetworks() {
         <article className="bg-zinc-300 text-zinc-900 rounded-lg p-4">
           <span className="font-semibold">Model Description</span>
           <p className="font-medium">
-            Trained for 32 epochs, this CNN classifier consists of three
-            convolutional layers and achieved training (98%) accuracy and
-            testing (95%) accuracy utilizing BCELoss for optimized binary
-            classification.
+            Trained with a linear kernel, this SVM classifier achieved an
+            accuracy of 98% on the training set and 95% on the test set.
           </p>
         </article>
         <form action="" className="flex flex-col lg:flex-row gap-4">
