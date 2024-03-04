@@ -10,6 +10,8 @@ import InputImageLoading from "./Loading/InputImageLoading";
 import FileDropZone from "@/Components/User/Classify/FileDropZone";
 import RecordZone from "@/Components/User/Classify/RecordZone";
 import { Button } from "@/Components/ui/button";
+import axios from "axios";
+import ResizeNotif from "@/Components/User/Classify/ResizeNotif";
 
 export default function InputImage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +23,35 @@ export default function InputImage() {
 
     return () => clearTimeout(timeout);
   }, []);
+
+  const [uploadedImagePath, setUploadedImagePath] = useState("");
+
+  const handleFileUpload = async (event: any) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3002/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const { imagePath } = response.data;
+      const filename = imagePath.split("/").pop();
+      const imageUrl = `assets/uploads/${filename}`;
+
+      setUploadedImagePath(imageUrl);
+      console.log("Uploaded image path:", imageUrl);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
 
   return (
     <>
@@ -47,17 +78,24 @@ export default function InputImage() {
             </DropdownMenu>
           </section>
           <div className="bg-violet-100 pt-6 pb-8 px-4 space-y-4">
-            <FileDropZone />
-            <RecordZone />
-            <section className="grid text-center items-center justify-center">
-              <Image
-                src="assets/images/resize_image.png"
-                alt="Resized to 256 by 256"
-              />
-              <p className="font-semibold text-violet-700">
-                Images will be resized to 256 x 256
-              </p>
-            </section>
+            <FileDropZone
+              uploadedImagePath={uploadedImagePath}
+              handleFileUpload={handleFileUpload}
+            />
+            {uploadedImagePath ? null : (
+              <>
+                <RecordZone /> <ResizeNotif />
+              </>
+            )}
+
+            {uploadedImagePath ? (
+              <Button
+                variant="default"
+                className="w-full bg-violet-700 hover:bg-violet-400"
+              >
+                Classify Image
+              </Button>
+            ) : null}
           </div>
         </>
       )}

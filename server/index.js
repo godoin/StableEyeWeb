@@ -5,6 +5,8 @@ const mysql = require("mysql");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const multer = require("multer");
+const path = require("path");
 require("dotenv").config();
 
 app.use(express.json());
@@ -40,6 +42,38 @@ db.connect((err) => {
     return;
   }
   console.log("Connected to the database");
+});
+
+// Set up multer storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "../client/assets/uploads"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+// Upload Image
+app.post("/upload", upload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error_message: "No file uploaded" });
+  }
+
+  const imagePath = req.file.path;
+
+  const SQL = "INSERT INTO images (image_path) VALUES (?)";
+  db.query(SQL, [imagePath], (err, results) => {
+    if (err) {
+      console.error("Error saving image path to database:", err);
+      return res.status(500).json({ error_message: "Internal Server Error" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Image uploaded successfully", imagePath });
+  });
 });
 
 // Verify User
