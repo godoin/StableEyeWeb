@@ -54,6 +54,10 @@ export default function InputImage() {
     }
   };
 
+  const handleCameraCapture = async (event: any) => {
+    // TODO: Implement API save image after image capture.
+  };
+
   const onHandleRecordZoneClick = () => {
     setShowWebcamPreview(true);
   };
@@ -85,10 +89,11 @@ export default function InputImage() {
           <div className="bg-violet-100 pt-6 pb-8 px-4 space-y-4">
             {showWebcamPreview ? (
               <div className="space-y-2">
-                <WebcamComponent />
+                <WebcamComponent onCapture={handleCameraCapture} />
                 <Button
                   variant="default"
                   className="w-full bg-violet-700 hover:bg-violet-400"
+                  onClick={() => setShowWebcamPreview(false)}
                 >
                   Capture
                 </Button>

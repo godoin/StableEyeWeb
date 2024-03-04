@@ -7,7 +7,7 @@ export default function UserLayout({ children }: PropsWithChildren) {
     <div className="relative min-h-screen min-w-screen overflow-hidden">
       <UserNavBar />
       <div
-        className="mt-14 bg-zinc-200"
+        className="mt-14 bg-zinc-200 flex justify-center text-center"
         style={{ minHeight: `calc(100vh - 2em)` }}
       >
         {children}

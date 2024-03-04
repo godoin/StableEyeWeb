@@ -8,7 +8,7 @@ import { Button } from "@/Components/ui/button";
 export default function Home() {
   const [auth, setAuth] = useState(true);
   const [message, setMessage] = useState("");
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const navigateTo = useNavigate();
 
   axios.defaults.withCredentials = true;
@@ -19,7 +19,7 @@ export default function Home() {
         if (res.data.Status === "Success") {
           console.log(res.data.username);
           setAuth(true);
-          setName(res.data.username);
+          setUsername(res.data.username);
         } else {
           setAuth(false);
           setMessage(res.data.Error);
@@ -49,10 +49,15 @@ export default function Home() {
     <>
       {auth ? (
         <UserLayout>
-          <div className="">Authenticated {name}</div>
-          <Button variant="destructive" onClick={handleDelete}>
-            Logout
-          </Button>
+          <div className="max-w-3xl w-full h-full p-8">
+            {/* <span className="text-2xl text-violet-700 font-semibold">
+              Welcome {username}!
+            </span> */}
+            <p className="text-3xl text-violet-700 font-semibold">
+              Stable Diffusion Image Discrimination: Comparative Study Using
+              Support Vector Machines And Convolutional Neural Networks
+            </p>
+          </div>
         </UserLayout>
       ) : (
         <GuestLayout>

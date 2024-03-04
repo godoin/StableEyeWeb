@@ -10,9 +10,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/Components/ui/sheet";
 import ConvDetails from "./Sheets/ConvDetails";
 import { useEffect, useState } from "react";
 import ModelLoading from "./Loading/ModelLoading";
-import * as tf from "@tensorflow/tfjs";
-
-// import UploadsFolder from "../../../../assets/uploads/";
+import * as onnx from "onnxjs";
 
 export default function ConvolutionalNetworks() {
   const [model, setModel] = useState(null);
@@ -23,14 +21,21 @@ export default function ConvolutionalNetworks() {
     async function loadModel() {
       try {
         await new Promise((resolve) => setTimeout(resolve, 2000));
+        console.log("Starting to load the model...");
 
-        const loadedModel = await tf.loadLayersModel("/client/models/");
+        const sess = new onnx.InferenceSession();
+        await sess.loadModel(
+          "/client/models/CNNClassifier-256-10000_Adam_0.0001_10_32_0.2_ThreeLayers.onnx"
+        );
+        console.log("Model loaded successfully:", sess);
       } catch (error) {
         console.error("Error loading the model:", error);
       } finally {
         setIsLoading(false);
       }
     }
+    loadModel();
+
     return () => {};
   }, []);
 
