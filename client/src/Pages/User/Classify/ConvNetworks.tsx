@@ -10,16 +10,28 @@ import { Sheet, SheetContent, SheetTrigger } from "@/Components/ui/sheet";
 import ConvDetails from "./Sheets/ConvDetails";
 import { useEffect, useState } from "react";
 import ModelLoading from "./Loading/ModelLoading";
+import * as tf from "@tensorflow/tfjs";
+
+// import UploadsFolder from "../../../../assets/uploads/";
 
 export default function ConvolutionalNetworks() {
+  const [model, setModel] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [classificationResult, setClassificationResult] = useState(null);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    async function loadModel() {
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    return () => clearTimeout(timeout);
+        const loadedModel = await tf.loadLayersModel("/client/models/");
+      } catch (error) {
+        console.error("Error loading the model:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    return () => {};
   }, []);
 
   return isLoading ? (

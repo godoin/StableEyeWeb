@@ -6,7 +6,7 @@ export default function InputImageLoading() {
     <>
       <section className="h-8 px-5 py-6 flex border-b border-zinc-300 items-center justify-between">
         <Skeleton className="h-5 w-16" />
-        <Skeleton className="h-4 w-4" />
+        <Skeleton className="h-8 w-4" />
       </section>
       <div className="bg-violet-100 pt-6 pb-8 px-4 space-y-3">
         <Skeleton className="h-32 py-8 px-6 bg-violet-200 rounded-lg flex flex-col items-center justify-center text-center gap-3" />

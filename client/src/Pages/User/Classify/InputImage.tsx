@@ -12,9 +12,12 @@ import RecordZone from "@/Components/User/Classify/RecordZone";
 import { Button } from "@/Components/ui/button";
 import axios from "axios";
 import ResizeNotif from "@/Components/User/Classify/ResizeNotif";
+import WebcamComponent from "@/Components/Global/WebcamComponent";
 
 export default function InputImage() {
   const [isLoading, setIsLoading] = useState(true);
+  const [uploadedImagePath, setUploadedImagePath] = useState("");
+  const [showWebcamPreview, setShowWebcamPreview] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -23,8 +26,6 @@ export default function InputImage() {
 
     return () => clearTimeout(timeout);
   }, []);
-
-  const [uploadedImagePath, setUploadedImagePath] = useState("");
 
   const handleFileUpload = async (event: any) => {
     const file = event.target.files[0];
@@ -53,6 +54,10 @@ export default function InputImage() {
     }
   };
 
+  const onHandleRecordZoneClick = () => {
+    setShowWebcamPreview(true);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -78,24 +83,39 @@ export default function InputImage() {
             </DropdownMenu>
           </section>
           <div className="bg-violet-100 pt-6 pb-8 px-4 space-y-4">
-            <FileDropZone
-              uploadedImagePath={uploadedImagePath}
-              handleFileUpload={handleFileUpload}
-            />
-            {uploadedImagePath ? null : (
-              <>
-                <RecordZone /> <ResizeNotif />
-              </>
+            {showWebcamPreview ? (
+              <div className="space-y-2">
+                <WebcamComponent />
+                <Button
+                  variant="default"
+                  className="w-full bg-violet-700 hover:bg-violet-400"
+                >
+                  Capture
+                </Button>
+              </div>
+            ) : uploadedImagePath ? (
+              <div className="space-y-2">
+                <FileDropZone
+                  uploadedImagePath={uploadedImagePath}
+                  handleFileUpload={handleFileUpload}
+                />
+                <Button
+                  variant="default"
+                  className="w-full bg-violet-700 hover:bg-violet-400"
+                >
+                  Classify Image
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <FileDropZone
+                  uploadedImagePath={uploadedImagePath}
+                  handleFileUpload={handleFileUpload}
+                />
+                <RecordZone onClick={onHandleRecordZoneClick} />
+                <ResizeNotif />
+              </div>
             )}
-
-            {uploadedImagePath ? (
-              <Button
-                variant="default"
-                className="w-full bg-violet-700 hover:bg-violet-400"
-              >
-                Classify Image
-              </Button>
-            ) : null}
           </div>
         </>
       )}
