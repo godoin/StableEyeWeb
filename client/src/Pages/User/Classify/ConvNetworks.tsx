@@ -11,6 +11,8 @@ import ConvDetails from "./Sheets/ConvDetails";
 import { useEffect, useState } from "react";
 import ModelLoading from "./Loading/ModelLoading";
 import * as onnx from "onnxjs";
+import fs from "fs";
+import path from "path";
 
 export default function ConvolutionalNetworks() {
   const [model, setModel] = useState(null);
@@ -28,6 +30,14 @@ export default function ConvolutionalNetworks() {
           "/client/models/CNNClassifier-256-10000_Adam_0.0001_10_32_0.2_ThreeLayers.onnx"
         );
         console.log("Model loaded successfully:", sess);
+
+        const imagePath = path.join(__dirname, "data", "1.npy");
+        const imageData = fs.readFileSync(imagePath);
+
+        const tensorData = new Float32Array(imageData.buffer);
+        const tensor = new onnx.Tensor(tensorData, "float32", [1, 1, 256, 256]);
+        const outputMap = await sess.run([tensor]);
+        console.log("Inference result:", outputMap);
       } catch (error) {
         console.error("Error loading the model:", error);
       } finally {

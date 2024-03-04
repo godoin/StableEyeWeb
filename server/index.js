@@ -7,8 +7,12 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const path = require("path");
+const bodyParser = require("body-parser");
+const ort = require("onnxruntime-node");
+const fs = require("fs");
 require("dotenv").config();
 
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(
   cors({
@@ -134,4 +138,64 @@ app.post("/login", (req, res) => {
       }
     });
   }
+});
+
+async function main() {
+  try {
+    const session = await ort.InferenceSession.create(
+      "./models/CNNClassifier-256-10000_Adam_0.0001_10_32_0.2_ThreeLayers.onnx"
+    );
+
+    const inputNames = session.inputNames;
+    const outputNames = session.outputNames;
+  } catch (e) {
+    console.error(`failed to create inference session: ${e}`);
+  }
+}
+
+main();
+
+app.get("/predict", async (req, res) => {
+  const imagePath = path.join(__dirname, "data", "1.npy");
+  fs.readFile(imagePath, async (err, data) => {
+    if (err) {
+      console.error("Error reading image array:", err);
+      return res.status(500).json({ error_message: "Internal Server Error" });
+    }
+
+    try {
+      const float32Array = new Float32Array(data);
+
+      // Assuming the data represents a 4-dimensional tensor with shape [1, 1, 256, 256]
+      const length = float32Array.length;
+      
+      const dim1 = 1;
+      const dim2 = 1;
+      const dim3 = Math.sqrt(length);
+      const dim4 = Math.sqrt(length);
+
+      console.log("Shape of the tensor:", [dim1, dim2, dim3, dim4]);
+
+      const session = await ort.InferenceSession.create(
+        "./models/CNNClassifier-256-10000_Adam_0.0001_10_32_0.2_ThreeLayers.onnx"
+      );
+
+      const inputTensor = new ort.Tensor(
+        "float32",
+        float32Array,
+        [1, 1, 256, 256]
+      );
+
+      const feeds = { input: inputTensor };
+      const outputMap = await session.run(feeds);
+      const outputTensor = outputMap.values().next().value;
+
+      console.log("Prediction:", outputTensor.data);
+
+      res.json({ prediction: outputTensor.data });
+    } catch (error) {
+      console.error("Error running inference:", error);
+      res.status(500).json({ error_message: "Internal Server Error" });
+    }
+  });
 });

@@ -13,6 +13,7 @@ dist-ssr
 *.local
 assets/uploads/*
 models/*
+data/*
 
 # Editor directories and files
 .vscode/*
