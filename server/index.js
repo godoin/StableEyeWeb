@@ -166,9 +166,8 @@ app.get("/predict", async (req, res) => {
     try {
       const float32Array = new Float32Array(data);
 
-      // Assuming the data represents a 4-dimensional tensor with shape [1, 1, 256, 256]
       const length = float32Array.length;
-      
+
       const dim1 = 1;
       const dim2 = 1;
       const dim3 = Math.sqrt(length);

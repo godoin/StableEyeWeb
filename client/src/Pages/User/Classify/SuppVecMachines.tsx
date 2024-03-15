@@ -57,7 +57,7 @@ export default function SupportVectorMachines() {
         </DropdownMenu>
       </section>
       <div className="p-4 space-y-4">
-        <article className="bg-zinc-300 text-zinc-900 rounded-lg p-4">
+        <article className="bg-zinc-300 text-zinc-900 rounded-lg p-4 text-left">
           <span className="font-semibold">Model Description</span>
           <p className="font-medium">
             Trained with a linear kernel, this SVM classifier achieved an
@@ -66,7 +66,7 @@ export default function SupportVectorMachines() {
         </article>
         <form action="" className="flex flex-col lg:flex-row gap-4">
           <section className="flex-1 border border-zinc-300 rounded-lg p-4 space-y-4">
-            <hgroup className="space-y-0">
+            <hgroup className="space-y-0 text-left">
               <span className="semibold">Classification Confidence</span>
               <p className="font-medium">
                 Please load an image to start classifying
@@ -83,7 +83,7 @@ export default function SupportVectorMachines() {
               </output>
             </div>
           </section>
-          <section className="flex w-full lg:flex-none lg:w-56 grid grid-cols-1 justify-between lg:space-y-4 p-4 gap-2 border border-zinc-300 rounded-lg">
+          <section className="flex w-full lg:flex-none lg:w-56 grid grid-cols-1 justify-between lg:space-y-4 p-4 gap-2 border border-zinc-300 rounded-lg text-left">
             <span>Is the model correct?</span>
             <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-0 justify-center items-center">
               <Button
